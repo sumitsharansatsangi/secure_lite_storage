@@ -1,0 +1,50 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+
+message KeyValueList{
+  repeated KeyValue data =1;
+}
+
+
+
+message KeyValue {
+  string key = 1;
+  Value value = 2;
+  map<string, google.protobuf.Any> values = 3;
+}
+
+message Value {
+  oneof kind {
+    string stringValue = 1;
+    int32 intValue = 2;
+    double doubleValue = 3;
+    bool boolValue = 4;
+    bytes bytesValue = 5;
+    ListString listStringValue = 6;
+    ListInt listIntValue = 7;
+    ListDouble listDoubleValue = 8;
+    ListBool listBoolValue = 9;
+    ListBytes listBytesValue =10;
+  }
+}
+
+message ListString {
+  repeated string values = 1;
+}
+
+message ListInt {
+  repeated int32 values = 1;
+}
+
+message ListDouble {
+  repeated double values = 1;
+}
+
+message ListBool {
+  repeated bool values = 1;
+}
+
+message ListBytes {
+  repeated bytes values = 1;
+}
+
